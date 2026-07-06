@@ -1,26 +1,216 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ============================================================
+   KEY FITNESS — Design Tokens (Design Bible Parts 1 & 5)
+   90% Black · 7% Cyan · 3% Yellow
+   ============================================================ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Themeable surfaces & text — values are set per-theme below */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  /* Brand (constant across themes) */
+  --color-primary: #2cc5f4;
+  --color-primary-hover: #17a7e3;
+  --color-highlight: #ffd400;
+
+  /* State */
+  --color-success: #28c76f;
+  --color-error: #ff3b30;
+
+  /* Typography */
+  --font-display: var(--font-bebas), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radius scale (Part 5) */
+  --radius-btn: 14px;
+  --radius-input: 14px;
+  --radius-img: 18px;
+  --radius-card: 20px;
+  --radius-section: 24px;
+  --radius-pill: 999px;
+
+  /* Section rhythm */
+  --spacing-section: 140px;
+
+  /* Easing (Part 6) */
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================
+   Theme palettes — LIGHT is the default
+   ============================================================ */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #f4f6f9;
+  --card: #ffffff;
+  --line: #e4e8ee;
+  --fg: #0a0d12;
+  --muted: #4b525b;
+  --faint: #767d87;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #050505;
+  --surface: #0e0e0e;
+  --card: #111111;
+  --line: #242424;
+  --fg: #ffffff;
+  --muted: #c9c9c9;
+  --faint: #8d8d8d;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display headings use Bebas Neue with tighter, uppercase treatment */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-primary);
+  color: #041016;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #1c1c1c;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Focus visibility (Accessibility — Part 7) */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+@utility container-x {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Cyan text/glow helpers */
+.text-gradient {
+  background: linear-gradient(180deg, #0b7fb0 0%, #17a7e3 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+[data-theme="dark"] .text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #9fe6fb 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.glow-primary {
+  box-shadow:
+    0 0 0 1px rgba(44, 197, 244, 0.15),
+    0 10px 40px -10px rgba(44, 197, 244, 0.45);
+}
+
+.glow-soft {
+  box-shadow: 0 20px 60px -25px rgba(0, 0, 0, 0.9);
+}
+
+/* Glassmorphism card (Part 11) — theme-aware */
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(10, 13, 18, 0.08);
+}
+[data-theme="dark"] .glass {
+  background: rgba(17, 17, 17, 0.6);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Ambient background glow blobs */
+.ambient-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(120px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Faint grid / noise flourish for premium backgrounds — theme-aware */
+.grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(10, 13, 18, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 13, 18, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+[data-theme="dark"] .grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Hide scrollbar for horizontal swipe rows on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================================
+   Reduced motion (Part 6 / Part 7 accessibility)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

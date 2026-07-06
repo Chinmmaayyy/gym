@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#050505"/>
+      <stop offset="1" stop-color="#0b1418"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(240 120) scale(620)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2CC5F4" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#2CC5F4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#2CC5F4"/>
+      <stop offset="1" stop-color="#17A7E3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(90 250)">
+    <rect x="0" y="0" width="84" height="84" rx="20" fill="url(#badge)"/>
+    <text x="42" y="62" font-family="Arial Narrow, sans-serif" font-size="60" font-weight="700" fill="#041016" text-anchor="middle">K</text>
+  </g>
+  <text x="90" y="200" font-family="Arial, sans-serif" font-size="22" letter-spacing="8" fill="#2CC5F4">PREMIUM UNISEX GYM</text>
+  <text x="196" y="315" font-family="Arial Narrow, sans-serif" font-size="88" font-weight="700" fill="#ffffff" letter-spacing="2">KEY FITNESS</text>
+  <text x="90" y="430" font-family="Arial Narrow, sans-serif" font-size="72" font-weight="700" fill="#ffffff">TRANSFORM YOUR BODY.</text>
+  <text x="90" y="500" font-family="Arial Narrow, sans-serif" font-size="72" font-weight="700" fill="#2CC5F4">TRANSFORM YOUR LIFE.</text>
+  <text x="90" y="565" font-family="Arial, sans-serif" font-size="22" fill="#8D8D8D">CrossFit · Cardio · Personal Training · Steam Bath · Massage</text>
+</svg>
