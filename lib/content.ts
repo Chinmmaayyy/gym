@@ -318,7 +318,6 @@ export type GalleryItem = {
   id: number;
   category: (typeof GALLERY_CATEGORIES)[number];
   label: string;
-  span: "tall" | "wide" | "normal";
 };
 
 /** Placeholder photo per gallery category (swap for real shots later). */
@@ -332,16 +331,16 @@ export const CATEGORY_IMAGE: Partial<Record<(typeof GALLERY_CATEGORIES)[number],
 };
 
 export const GALLERY_ITEMS: GalleryItem[] = [
-  { id: 1, category: "Interior", label: "Main Training Floor", span: "tall" },
-  { id: 2, category: "Equipment", label: "Free Weights Zone", span: "normal" },
-  { id: 3, category: "CrossFit", label: "Functional Rig", span: "wide" },
-  { id: 4, category: "Cardio", label: "Cardio Deck", span: "normal" },
-  { id: 5, category: "Personal Training", label: "1-on-1 Coaching", span: "normal" },
-  { id: 6, category: "Members", label: "Community Session", span: "tall" },
-  { id: 7, category: "Interior", label: "Reception & Lounge", span: "normal" },
-  { id: 8, category: "Equipment", label: "Machine Floor", span: "wide" },
-  { id: 9, category: "CrossFit", label: "Box Jumps", span: "normal" },
-  { id: 10, category: "Cardio", label: "Treadmill Row", span: "normal" },
-  { id: 11, category: "Members", label: "Group Energy", span: "normal" },
-  { id: 12, category: "Personal Training", label: "Form Coaching", span: "tall" },
+  { id: 1, category: "Interior", label: "Main Training Floor" },
+  { id: 2, category: "Equipment", label: "Free Weights Zone" },
+  { id: 3, category: "CrossFit", label: "Functional Rig" },
+  { id: 4, category: "Cardio", label: "Cardio Deck" },
+  { id: 5, category: "Personal Training", label: "1-on-1 Coaching" },
+  { id: 6, category: "Members", label: "Community Session" },
+  { id: 7, category: "Interior", label: "Reception & Lounge" },
+  { id: 8, category: "Equipment", label: "Machine Floor" },
+  { id: 9, category: "CrossFit", label: "Box Jumps" },
+  { id: 10, category: "Cardio", label: "Treadmill Row" },
+  { id: 11, category: "Members", label: "Group Energy" },
+  { id: 12, category: "Personal Training", label: "Form Coaching" },
 ];

@@ -4,15 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import { GALLERY_CATEGORIES, GALLERY_ITEMS, CATEGORY_IMAGE, type GalleryItem } from "@/lib/content";
+import { GALLERY_CATEGORIES, GALLERY_ITEMS, CATEGORY_IMAGE } from "@/lib/content";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { cn } from "@/lib/utils";
-
-const spanClasses: Record<GalleryItem["span"], string> = {
-  tall: "row-span-2 aspect-[3/4]",
-  wide: "sm:col-span-2 aspect-[16/9]",
-  normal: "aspect-square",
-};
 
 export function GalleryGrid({ withFilters = false, limit }: { withFilters?: boolean; limit?: number }) {
   const [active, setActive] = useState<(typeof GALLERY_CATEGORIES)[number]>("All");
@@ -50,7 +44,7 @@ export function GalleryGrid({ withFilters = false, limit }: { withFilters?: bool
         </div>
       )}
 
-      <motion.div layout className="grid auto-rows-[minmax(0,1fr)] grid-cols-2 gap-4 lg:grid-cols-3">
+      <motion.div layout className="grid grid-cols-2 gap-4 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {items.map((item, idx) => (
             <motion.button
@@ -62,10 +56,7 @@ export function GalleryGrid({ withFilters = false, limit }: { withFilters?: bool
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.4 }}
-              className={cn(
-                "group relative overflow-hidden rounded-img border border-line",
-                spanClasses[item.span],
-              )}
+              className="group relative aspect-[4/5] w-full overflow-hidden rounded-img border border-line"
             >
               {CATEGORY_IMAGE[item.category] ? (
                 <Image
